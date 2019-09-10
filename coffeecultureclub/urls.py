@@ -18,6 +18,9 @@ from django.contrib import admin
 from home.views import index, home_page
 from django.views import static
 from accounts import urls as urls_accounts
+from django.views.generic import RedirectView
+from .settings import MEDIA_ROOT
+
 
 
 
@@ -25,5 +28,8 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', home_page, name="index"),
     url(r'^accounts/', include(urls_accounts)),
+    url(r'^$', RedirectView.as_view(url='posts/')),
+    url(r'^posts/', include('posts.urls')),
+    url(r'^media/(?P<path>.*)$', static.serve, {'document_root': MEDIA_ROOT}),
 
 ]
