@@ -20,6 +20,8 @@ from django.views import static
 from accounts import urls as urls_accounts
 from django.views.generic import RedirectView
 from .settings import MEDIA_ROOT
+from products import urls as urls_products
+from products.views import all_products
 
 
 
@@ -31,5 +33,7 @@ urlpatterns = [
     url(r'^$', RedirectView.as_view(url='posts/')),
     url(r'^posts/', include('posts.urls')),
     url(r'^media/(?P<path>.*)$', static.serve, {'document_root': MEDIA_ROOT}),
+    url(r'^products/', include(urls_products), name="products"),
+
 
 ]
