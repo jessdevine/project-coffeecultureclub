@@ -27,6 +27,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
+
 </head>
 
 
@@ -41,28 +42,56 @@
         <!--  Nav Bar  -->
         <nav>
             <div class="nav-wrapper black">
-                <a href="#" class="brand-logo brand-font">C³</a>
+                <a href="{% url 'index' %}" class="brand-logo brand-font">C³</a>
 
                 <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                         <li><a href="#">Coffee</a></li>
                         <li><a href="#">Culture</a></li>
-                        <li><a href="#">Join Club</a></li>
-                        <li><a href="#">Sign In</a></li>
-                  
+                    
+                     {% if user.is_authenticated %}
+                        <li><a href="{% url 'profile' %}">Account</a></li>
+                        <li><a href="{% url 'logout' %}">Sign Out</a></li>
+                    {%  else %}
+                        <li><a href="{% url 'registration' %}">Join Club</a></li>
+                        <li><a href="{% url 'login' %}">Sign In</a></li>
+                    {% endif %}
+                       
                 </ul>
 
 
                 <ul class="side-nav amber darken-4" id="mobile-demo">
                       <li><a href="#">Coffee</a></li>
                         <li><a href="#">Culture</a></li>
-                  
+                    
+                     {% if user.is_authenticated %}
+                        <li><a href="{% url 'profile' %}">Club</a></li>
+                        <li><a href="{% url 'logout' %}">Sign Out</a></li>
+                    {%  else %}
+                        <li><a href="{% url 'registration' %}">Join Club</a></li>
+                        <li><a href="{% url 'login' %}">Sign In</a></li>
+                    {% endif %}
+                         <li>
+                           
                     
                     </li>
                 </ul>
             </div>
         </nav>
 
+
+
+
+
+ {% if messages %}
+        <div class="white-text">
+            <div class="messages">
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
 
 
 

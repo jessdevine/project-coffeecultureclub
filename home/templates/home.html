@@ -31,7 +31,7 @@
         <div class="caption right-align">
           <h3>Join the Club</h3>
           <h5 class="light grey-text text-lighten-3">Sign up for an account and get free shipping off your first order!</h5>
-            <a href="#" class="waves-effect waves-light btn amber darken-3"><i class="material-icons left">insert_emoticon</i>Sign Up</a>
+            <a href="{% url 'registration' %}" class="waves-effect waves-light btn amber darken-3"><i class="material-icons left">insert_emoticon</i>Sign Up</a>
 
         </div>
       </li>
@@ -115,12 +115,15 @@
 
         </div>
         
+        {% if user.is_authenticated %}
         <div class="card-action">
           <a href="#">Club</a>
                   </div>
           
+          {%  else %}
         <div class="card-action">
-          <a href="#">Join the club</a>
+          <a href="{% url 'registration' %}">Join the club</a>
+                    {% endif %}
 
         </div>
       </div>
