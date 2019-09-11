@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static from staticfiles %}
+{% load bootstrap_tags %}
+{% block content %}
+<div class="container">
+    {% for item in cart_items %}
+<div class="row white-container"> 
+<div class="col s12 m12 l8 offset-l2">
+
+        <div class="product" style="background-image: url('{{ MEDIA_URL }}{{ item.product.image }}')"></div>
+
+            <h4>{{ item.product.name }}</h4>
+            <p>{{ item.product.price }}</p>
+            <p>
+
+
+                <form class="form-inline" method="post" action="{% url 'adjust_cart' item.id %}">
+                    {% csrf_token %}
+
+
+                    <div class="form-group">
+                        <label for="exampleInputAmount" class="sr-only">New Qty</label>
+                     
+                        
+                        <div class="input-group">
+                            <div class="input-group-addon">Qty</div>
+                            <input name="quantity" type="number" min="0" max="999" class="form-control" required>
+
+                            <div class="input-group-addon">{{item.quantity}}</div>
+                        </div>
+
+
+                    </div>
+                    <button type="submit" class="waves-effect waves-light btn amber darken-3"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Amend</button>
+                </form>
+            </p>
+                </div>
+
+            
+            </div>
+    
+    {% endfor %}
+    
+    <div class="row white-container"> 
+   <div class="col s12 m12 l8 offset-l2">
+    <p>Total</p>
+    <p><span class="glyphicon glyphicon-euro" aria-hidden="true"></span>{{ total }}</p>
+    <a href="#" class="waves-effect waves-light btn amber darken-3" role="button"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>Checkout</a>
+</div>
+</div>
+</div>
+
+
+{% endblock %}

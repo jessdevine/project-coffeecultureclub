@@ -26,7 +26,9 @@
 <!--Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-
+<!--Stipe JS -->
+    {% block head_js %}
+    {% endblock head_js %}
 
 </head>
 
@@ -56,7 +58,9 @@
                         <li><a href="{% url 'registration' %}">Join Club</a></li>
                         <li><a href="{% url 'login' %}">Sign In</a></li>
                     {% endif %}
-                       
+                        {% if product_count > 0 %}
+                        <a href="{% url 'view_cart' %}" class="waves-effect waves-light btn amber darken-3"><i class="material-icons left">shopping_cart</i>{{ product_count }}</a>
+                            {% endif %}
                 </ul>
 
 
@@ -72,7 +76,9 @@
                         <li><a href="{% url 'login' %}">Sign In</a></li>
                     {% endif %}
                          <li>
-                           
+                             {% if product_count > 0 %}
+                        <a href="{% url 'view_cart' %}" class="waves-effect waves-light btn amber darken-3"><i class="material-icons left">shopping_cart</i>{{ product_count }}</a>
+                            {% endif %}
                     
                     </li>
                 </ul>

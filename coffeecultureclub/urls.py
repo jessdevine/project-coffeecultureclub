@@ -22,6 +22,8 @@ from django.views.generic import RedirectView
 from .settings import MEDIA_ROOT
 from products import urls as urls_products
 from products.views import all_products
+from cart import urls as urls_cart
+
 
 
 
@@ -34,6 +36,6 @@ urlpatterns = [
     url(r'^posts/', include('posts.urls')),
     url(r'^media/(?P<path>.*)$', static.serve, {'document_root': MEDIA_ROOT}),
     url(r'^products/', include(urls_products), name="products"),
-
+    url(r'^cart/', include(urls_cart)),
 
 ]

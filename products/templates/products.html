@@ -1,15 +1,8 @@
 {% extends 'base.html' %} {% block content %}
 
-<div class="row">
-    <div class="col l10 offset-l1">
-        <form action="#" method="get">
-            <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-            <input type="text" name="q">
-        </form>
-    </div>
-</div>
 
-<!--Product Card test -->
+
+<!--Product Card  -->
 
 <div class="container">
     <div class="row white-container">
@@ -27,7 +20,7 @@
 
 
 
-        <form method="post" action="#">
+        <form method="post" action="{% url 'add_to_cart' product.id %}">
             {% csrf_token %}
             <div class="input-group">
                 <input name="quantity" type="number" min="1" max="999" class="form-control" placeholder="Quantity" required>
@@ -48,4 +41,3 @@
 </div>
 {% endblock %}
 
-<!--Products -->
