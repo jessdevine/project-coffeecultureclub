@@ -1,0 +1,62 @@
+{% extends "base.html" %} {% load static from staticfiles %} {% load bootstrap_tags %} {% block head_js %}
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script type="text/javascript">
+    //<![CDATA[
+    Stripe.publishableKey = '{{ publishable }}';
+    //]]>
+</script>
+<script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
+{% endblock %} {% block content %}
+<div class="container">
+    {% for item in cart_items %}
+    <div class="row white-container">
+        <div class="col s12 m6 l6">
+            <div class="product" style="background-image: url('{{ MEDIA_URL }}{{ item.product.image }}')"></div>
+
+            <div class="caption">
+                <h4 class="product-name">{{ item.product.name }}</h4>
+                <p> Qty: {{ item.quantity }}</p>
+                <p> Price: {{ item.product.price }}</p>
+            </div>
+        </div>
+            {% endfor %}
+
+    </div>
+
+
+
+    <div class="row white-container">
+        <div class="col s12 m12 l8 offset-l2">
+            <h3 class"product-name">Total: {{ total }} </h3>
+
+        </div>
+        </div>
+           <div class="row white-container">
+        <div class="col s12 m12 l8 offset-l2">
+            <form role="form" method="post" id="payment-form" action="{% url 'checkout' %}">
+                <legend class"bold">Payment Details</legend>
+
+                <div id="credit-card-errors" style="display: none;">
+                    <div id="alert-message block-message error" id="stripe-error-message"></div>
+                </div>
+
+                <div class="form-group col-md-6">
+                    {{ order_form | as_bootstrap }}
+                </div>
+
+                <div class="form-group col-md-6">
+                    {{ payment_form | as_bootstrap }}
+                </div>
+
+
+                {% csrf_token %}
+                <div class="form-group">
+                    <input class="waves-effect waves-light btn amber darken-3" id="submit_payment_btn" name="commit" type="submit" value="Submit Payment">
+                </div>
+
+            </form>
+        </div>
+        </div>
+        </div>
+
+        {% endblock %}
