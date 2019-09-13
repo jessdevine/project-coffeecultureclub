@@ -33,7 +33,7 @@
 
       <hr> {% for review in product.review.all %}
             <div class="review">
-                <p>{{ review.user_name }} | {{ review.published_date }}</p>
+                <p>{{ review.author }} | {{ review.published_date }}</p>
                 <strong> {{ review.rating }} <i class="material-icons">star</i> {{ review.comment }}</strong>
                 <hr>
              </div>

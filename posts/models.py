@@ -11,8 +11,8 @@ class Post(models.Model):
     """
     A single Blog post
     """
-#    author = models.ForeignKey(get_user_model(), null=True)     
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, null=True)
+    author = models.ForeignKey(get_user_model(), null=True)     
+#    author = models.ForeignKey(settings.AUTH_USER_MODEL, null=True)
     title = models.CharField(max_length=200)
     content = models.TextField()
     created_date = models.DateTimeField(auto_now_add=True)
@@ -30,7 +30,7 @@ class Post(models.Model):
         
 class Comment(models.Model):
     post = models.ForeignKey('posts.Post', on_delete=models.CASCADE, related_name='comments')
-    author = models.CharField(max_length=200)
+    author = models.ForeignKey(get_user_model(), null=True)     
     text = models.TextField()
     created_date = models.DateTimeField(default=timezone.now)
     approved_comment = models.BooleanField(default=False)

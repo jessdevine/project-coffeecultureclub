@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Product, Review
 from .forms import ReviewForm
 
+
 # Create your views here.
 
 
@@ -40,6 +41,10 @@ def add_review_to_product(request, pk):
         if form.is_valid():
             review = form.save(commit=False)
             review.product = product
+            review.author = request.user
+            
+            # user = request.user
+            # user.save()
             review.save()
             return redirect('product_detail', pk=product.pk)
     else:
