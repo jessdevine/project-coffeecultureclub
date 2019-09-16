@@ -28,7 +28,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = ['4cc29d84d29d4342bee304e0a5ac70e3.vfs.cloud9.us-east-1.amazonaws.com',
-                'https://coffee-culture-club.herokuapp.com']
+                'coffee-culture-club.herokuapp.com']
 
 
 # Application definition
