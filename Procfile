@@ -1,1 +1,1 @@
-web: gunicorn --log-file=- coffeecultureclub.wsgi:application
+web: gunicorn coffeecultureclub.wsgi:application
