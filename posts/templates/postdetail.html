@@ -6,7 +6,7 @@
             <div class="card-image">
 
                 {% if post.image %}
-                <img class="img-meetup responsive-img" src="/media/{{ post.image }}"> {% endif %}
+                <img class="img-meetup responsive-img" src="{{ MEDIA_URL }}{{ post.image }}"> {% endif %}
                 <span class="card-title">{{ post.title }}</span>
             </div>
 

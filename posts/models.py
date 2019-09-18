@@ -19,7 +19,7 @@ class Post(models.Model):
     published_date = models.DateTimeField(blank=True, null=True, default=timezone.now)
     views = models.IntegerField(default=0)
     tag = models.CharField(max_length=30, blank=True, null=True)
-    image = models.ImageField(upload_to="img", blank=True, null=True)
+    image = models.ImageField(upload_to="images", blank=True, null=True)
     category = models.CharField(max_length=50, null=True)
     location = models.CharField(max_length=255, null=True)
     
