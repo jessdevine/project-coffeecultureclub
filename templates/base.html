@@ -67,9 +67,8 @@
                 <ul class="side-nav amber darken-4" id="mobile-demo">
                       <li><a href="{% url 'products' %}">Coffee</a></li>
                         <li><a href="{% url 'get_posts' %}">Culture</a></li>
-                    
-                     {% if user.is_authenticated %}
-                        <li><a href="{% url 'profile' %}">Club</a></li>
+                       {% if user.is_authenticated %}
+                        <li><a href="{% url 'profile' %}">Account</a></li>
                         <li><a href="{% url 'logout' %}">Sign Out</a></li>
                     {%  else %}
                         <li><a href="{% url 'registration' %}">Join Club</a></li>
@@ -91,7 +90,8 @@
 
  {% if messages %}
         <div class="white-text">
-            <div class="messages">
+            <div class="center-align messages">
+                <a class="waves-effect waves-light btn-floating amber darken-3"><i class="material-icons">notifications</i></a>
                 {% for message in messages %}
                     {{ message }}
                 {% endfor %}
