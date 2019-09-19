@@ -16,7 +16,6 @@
                 <p><span class="bold">Author:</span> {{post.author}}</p>
                 <p><span class="bold">Published on:</span> {{ post.published_date }} </p>
                 <p><span class="bold">Views:</span> {{post.views}}</p>
-                <p><span class="bold">Tag:</span> {{ post.tag }}</p>
                 <p><span class="bold">Category:</span> {{ post.category }}</p>
                 <p><span class="bold">Location:</span> {{ post.location }}</p>
            <!--     <a href="{% url 'edit_post' post.id %}" class="btn amber darken-3">Edit Post</a>
@@ -50,6 +49,28 @@
 </div>
         </div>
 </div>
+</div>
+
+
+
+<!-- Floating New Meetup Action  -->
+{% if user.is_authenticated %}
+
+<div class="fixed-action-btn">
+    <a class="btn-floating btn-large red">
+    <i class="large material-icons">add_circle_outline</i>
+  </a>
+    <ul>
+        <li><a class="btn-floating green" href="{% url 'new_post' %}"><i class="material-icons">publish</i></a></li>
+    </ul>
+</div>
+
+{% else %}
+            <div class="row center-align white-text">
+<p>Please sign-in or register to add meetups</p>
+<a class="waves-effect waves-light btn amber darken-3" href="{% url 'registration' %}">Join</a>
+
+<a class="waves-effect waves-light btn amber darken-3" href="{% url 'login' %}">Login</a> {% endif %}
 </div>
             {% endblock %}
 

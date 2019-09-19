@@ -11,15 +11,14 @@ class Post(models.Model):
     """
     A single Blog post
     """
-    author = models.ForeignKey(get_user_model(), null=True)     
+    author = models.ForeignKey(get_user_model(), null=True, on_delete=models.CASCADE)     
 #    author = models.ForeignKey(settings.AUTH_USER_MODEL, null=True)
     title = models.CharField(max_length=200)
     content = models.TextField()
     created_date = models.DateTimeField(auto_now_add=True)
     published_date = models.DateTimeField(blank=True, null=True, default=timezone.now)
     views = models.IntegerField(default=0)
-    tag = models.CharField(max_length=30, blank=True, null=True)
-    image = models.ImageField(upload_to="images", blank=True, null=True)
+    image = models.ImageField(upload_to="images")
     category = models.CharField(max_length=50, null=True)
     location = models.CharField(max_length=255, null=True)
     
@@ -30,10 +29,9 @@ class Post(models.Model):
         
 class Comment(models.Model):
     post = models.ForeignKey('posts.Post', on_delete=models.CASCADE, related_name='comments')
-    author = models.ForeignKey(get_user_model(), null=True)     
+    author = models.ForeignKey(get_user_model(), null=True, on_delete=models.CASCADE)     
     text = models.TextField()
     created_date = models.DateTimeField(default=timezone.now)
-    approved_comment = models.BooleanField(default=False)
     attending = models.BooleanField(default=False)
 
 
