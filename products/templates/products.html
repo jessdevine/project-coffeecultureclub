@@ -1,8 +1,8 @@
 {% extends 'base.html' %} {% block content %}
 
 <div class="row">
-    <div class="col l10 offset-l1">
-        <form action="{% url 'search' %}" method="get">
+    <div class="col l10 offset-l1 m12 s12">
+        <form class="white-text" action="{% url 'search' %}" method="get">
             <label class="label-icon" for="search"><i class="material-icons">search</i></label>
             <input type="text" name="q">
         </form>
@@ -19,33 +19,29 @@
         <div class="col s12 m6 l6 ">
 
             <div class="product" style="background-image: url('{{ MEDIA_URL }}{{ product.image }}')"></div>
-            <span class="product-name">{{ product.name }}</span>
+
+            <p class="product-name center-align">{{ product.name }}</p>
+            <p class="center-align"> <a href="{% url 'product_detail' product.id %}" class="waves-effect waves-light btn amber darken-3">See Coffee Reviews
+            
+            </a> </p>
+
+            <p class="product-description">{{ product.description }}</p>
+            <p class="bold">€{{ product.price }}</p>
 
 
+            <form method="post" action="{% url 'add_to_cart' product.id %}">
+                {% csrf_token %}
+                <div class="input-group">
+                    <input name="quantity" type="number" min="1" max="999" class="form-control" placeholder="Quantity" required>
+                    <button class="waves-effect waves-light btn amber darken-3" type="submit"><i class="material-icons left">add_shopping_cart
+</i>Add To Cart</button>
+                </div>
+            </form>
 
-        <p class="product-description">{{ product.description }}</p>
-        <p>{{ product.price }}</p>
-
-
-
-        <form method="post" action="{% url 'add_to_cart' product.id %}">
-            {% csrf_token %}
-            <div class="input-group">
-                <input name="quantity" type="number" min="1" max="999" class="form-control" placeholder="Quantity" required>
-                <span class="input-group-btn">
-                            <button class="waves-effect waves-light btn amber darken-3" type="submit">Add</button>
-                                              <a href="{% url 'product_detail' product.id %}"  class="waves-effect waves-light btn amber darken-3">See Reviews</a>
-
-                </span>
-            </div>
-        </form>
+        </div>
 
 
+        {% endfor %}
     </div>
-
-
-{% endfor %} 
-</div>
 </div>
 {% endblock %}
-
