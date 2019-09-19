@@ -13,10 +13,10 @@
         <div class="col s12 m6 l6">
             <div class="product" style="background-image: url('{{ MEDIA_URL }}{{ item.product.image }}')"></div>
 
-            <div class="caption">
-                <h4 class="product-name">{{ item.product.name }}</h4>
-                <p> Qty: {{ item.quantity }}</p>
-                <p> Price: {{ item.product.price }}</p>
+            <div class="center-align">
+                <h4>{{ item.product.name }}</h4>
+                <p class="bold"> Quantity: {{ item.quantity }}</p>
+                <p class="bold"> Price: €{{ item.product.price }}</p>
             </div>
         </div>
             {% endfor %}
@@ -25,16 +25,17 @@
 
 
 
-    <div class="row white-container">
+    <div class="row white-container center-align">
         <div class="col s12 m12 l8 offset-l2">
-            <h3 class"product-name">Total: {{ total }} </h3>
+            <h3 class"product-name">Total: €{{ total }} </h3>
 
         </div>
         </div>
+        
            <div class="row white-container">
         <div class="col s12 m12 l8 offset-l2">
             <form role="form" method="post" id="payment-form" action="{% url 'checkout' %}">
-                <legend class"bold">Payment Details</legend>
+                <h4>Payment Details</h4>
 
                 <div id="credit-card-errors" style="display: none;">
                     <div id="alert-message block-message error" id="stripe-error-message"></div>
