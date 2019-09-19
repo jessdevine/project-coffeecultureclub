@@ -1,5 +1,7 @@
 # Coffee Culture Club: 
 
+[Visit Site](https://coffee-culture-club.herokuapp.com/)
+
 Coffee Culture Clubs misson is to bring people together through the love of high quality and environment ethically sourced coffee. 
 
 New age milenaials are done with night clubs and other demographics are removing alcohol from their lifes for multiple different reasons. 
@@ -9,7 +11,7 @@ There's not yet a set space for individuals to be social without the pressure of
 
 ##
 
-This web application is built with responsive, mobile first design. Users have the ability to plan new meetups and comment on exisiting meetups, they can buy & review products and receive discounts by filling out survays or 
+This web application is built with responsive, mobile first design. Users have the ability to plan new meetups and comment on exisiting meetups, they can buy & review products and 
 becoming a member of the club. 
 
 
@@ -45,11 +47,23 @@ card on the homepage
 - Back to all meetups and see the ability to add a new meetup
 
 
+### Wireframes:
 
+Home page:
 
-Wireframes:
+[Desktop](https://coffee-culture-club.s3-eu-west-1.amazonaws.com/wireframes/homedesktop.png)
 
-[ADD WIREFRAMES]
+[Mobile](https://coffee-culture-club.s3-eu-west-1.amazonaws.com/wireframes/homemobile.png)
+
+Products/Coffee:
+
+[Desktop](https://coffee-culture-club.s3-eu-west-1.amazonaws.com/wireframes/productsdesktop.png)
+
+[Mobile](https://coffee-culture-club.s3-eu-west-1.amazonaws.com/wireframes/productsmobile.png)
+
+Culture/Posts:
+
+[coming soon]
 
 ## Features
 
@@ -87,33 +101,45 @@ Wireframes:
 
 [Django](https://www.djangoproject.com/)
 
+[Amazon S3](https://aws.amazon.com/s3/features/)
+
+[Stipe](https://stripe.com/ie)
+
+[PostgreSQL](https://www.postgresql.org/)
+
 
 
 ## Testing
-[TO DO]
+- Tested on all new age desktop and mobile browsers to ensure cross compatibility & functionality.
+- Tested to be responsive and to ensure it would be correctly displayed across different mobile screens sizes.
+- Each one of the user stories were tested without errors.
+- Testing for this project was done manually. The majority of testing covered the different Django apps.
+- All forms are validated to ensure each field is included when submitting. Messages respond to the user whether they've been successful or not.
+- For account registration, logic is included to ensure emails and usernames do not already exist in the database.
+- The Checkout is secured and payment can be successfully taken via Stipe.
+- Users cannot add reviews to products, add meetups or add comments to meetups without being logged in.
+
 
 ## Deployment
 
-### I deployed my site using Heroku
+### I deployed my site using Heroku & GitHub
 
-[UPDATE ONCE FULLLY DEPLOYED]
-
-* Create a new app on Heroku 
-* If Heroku is not already pre installed in the development environment then run the following CLI command:
+Initalzie Git (if you haven't already)
 ```
-$ sudo snap install --classic heroku
-```
-* Login to Heroku Via the command line:
-```
-$ heroku login 
-```
-
-* Create a new Git repository and connect Heroku
-```
-$ cd my-project/
 $ git init
-$ heroku git:remote -a datadevelopment
+
+$ git add .
+
+$ git commit -m "initial commit"
 ```
+
+Connect Github Repository:
+```
+$ git remote add origin https://github.com/jessdevine/project-coffeecultureclub.git
+
+$ git push -u origin master
+```
+
 
 Add Requirements.txt
 ```
@@ -121,26 +147,32 @@ $ sudo pip3 freeze —local > requirements.txt
 ```
 Add ProcFile
 ```
-echo web: python app.py > Procfile
+echo web: gunicorn coffeecultureclub.wsgi:application > Procfile
 ```
-Deploy Site: 
-```
-$ git add .
-$ git commit -am "make it better"
-$ git push heroku master
-```
-Run Application:
-```
-$ heroku ps:scale web=1
-```
+
+
 In the Heroku application
-Go to Settings > Config Vars
-Specify IP & Port:
+Go to Settings > Config Vars 
 ```
-IP    
-PORT
-STRIPE_Settings
+AWS_SECRET_ACCESS_KEY
+STRIPE_SECRET
+STRIPE_PUBLISHABLE
+SECRET_KEY
+EMAIL_HOST_USER
+EMAIL_HOST_PASSWORD
+DISABLE_COLLECTSTATIC
+DATABASE_URL
 ```
+
+Deploy Site:
+
+- In the Heroku web client connect GitHub account
+- Select GitHub Repository 
+
+```
+git push
+```
+
 
 
 ### Media
