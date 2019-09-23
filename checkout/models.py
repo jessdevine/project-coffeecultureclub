@@ -1,6 +1,8 @@
 from django.db import models
 from products.models import Product
 from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User
+
 
 
 # Create your models here.
@@ -25,7 +27,10 @@ class OrderLineItem(models.Model):
     order = models.ForeignKey(Order, null=False)
     product = models.ForeignKey(Product, null=False)
     quantity = models.IntegerField(blank=False)
+    user = models.ForeignKey(get_user_model(), null=True)     
+
+
 
     def __str__(self):
-        return "{0} {1} @ {2}".format(
+        return "{0} @ {1} {2}".format(
             self.quantity, self.product.name, self.product.price)

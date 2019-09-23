@@ -8,13 +8,17 @@ from checkout.models import Order, OrderLineItem
 
 def user_profile(request):
     """The user's profile page"""
-    user = User.objects.get(email=request.user.email)
+    user = User.objects.get(email=request.user.email) 
     return render(request, 'profile.html', {"profile": user})
     
     
     
-    
-    
+#Order histoy
+
+def user_orders(request):
+    """The user's orders page"""
+    order_history = OrderLineItem.objects.filter(user=request.user)
+    return render(request, 'orders.html', {"orders": order_history})
     
 
 def index(request):
