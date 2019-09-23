@@ -14,12 +14,10 @@ class Product(models.Model):
     description = models.TextField()
     price = models.DecimalField(max_digits=6, decimal_places=2)
     image = models.ImageField(upload_to='images')
-    
-
 
     def __str__(self):
         return self.name
-        
+    
 
 # Review Model
 class Review(models.Model):
@@ -32,10 +30,9 @@ class Review(models.Model):
     )
     product = models.ForeignKey('products.Product', on_delete=models.CASCADE, related_name='review')
     published_date = models.DateTimeField(blank=True, null=True, default=timezone.now)
-#    user_name = models.CharField(max_length=100)
     comment = models.CharField(max_length=200)
     rating = models.IntegerField(choices=RATING_CHOICES)
-    author = models.ForeignKey(User, null=True)
+    author = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
 #   
     def average_rating(self):
        ratings = Review.objects.get('rating')
