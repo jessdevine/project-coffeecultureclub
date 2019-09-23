@@ -12,13 +12,12 @@ class Post(models.Model):
     A single Blog post
     """
     author = models.ForeignKey(get_user_model(), null=True, on_delete=models.CASCADE)     
-#    author = models.ForeignKey(settings.AUTH_USER_MODEL, null=True)
     title = models.CharField(max_length=200)
     content = models.TextField()
     created_date = models.DateTimeField(auto_now_add=True)
     published_date = models.DateTimeField(blank=True, null=True, default=timezone.now)
     views = models.IntegerField(default=0)
-    image = models.ImageField(upload_to="images")
+    image = models.ImageField(upload_to='images', default='images/crew--UP9VOibb64-unsplash.jpg')
     category = models.CharField(max_length=50, null=True)
     location = models.CharField(max_length=255, null=True)
     
