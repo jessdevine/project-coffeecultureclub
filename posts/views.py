@@ -3,6 +3,8 @@ from django.utils import timezone
 from .models import Post
 from .forms import BlogPostForm, CommentForm
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
+
 
 
 
@@ -18,7 +20,7 @@ def post_detail(request, pk):
     post.save()
     return render(request, "postdetail.html", {'post': post})
 
-
+@login_required()
 def create_or_edit_post(request, pk=None):
     post = get_object_or_404(Post, pk=pk) if pk else None
     if request.method == "POST":
@@ -33,7 +35,7 @@ def create_or_edit_post(request, pk=None):
     return render(request, 'blogpostform.html', {'form': form})
     
     
-    
+@login_required()
 def add_comment_to_post(request, pk):
     post = get_object_or_404(Post, pk=pk)
     if request.method == "POST":

@@ -1,12 +1,13 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Product, Review
 from .forms import ReviewForm
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
 
 
-# All Products 
+# All Products
 def all_products(request):
     products = Product.objects.all()
     return render(request, "products.html", {"products": products})
@@ -33,7 +34,7 @@ def review_detail(request, review_id):
 
     
 # Add Review to Product
-
+@login_required()
 def add_review_to_product(request, pk):
     product = get_object_or_404(Product, pk=pk)
     if request.method == "POST":
@@ -42,15 +43,11 @@ def add_review_to_product(request, pk):
             review = form.save(commit=False)
             review.product = product
             review.author = request.user
-            
-            # user = request.user
-            # user.save()
             review.save()
             return redirect('product_detail', pk=product.pk)
     else:
         form = ReviewForm()
     return render(request, 'add_review_to_product.html', {'form': form})
     
-    #####
-    
+
         
