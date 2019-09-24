@@ -61,9 +61,6 @@ Products/Coffee:
 
 [Mobile](https://coffee-culture-club.s3-eu-west-1.amazonaws.com/wireframes/productsmobile.png)
 
-Culture/Posts:
-
-[coming soon]
 
 ## Features
 
@@ -118,6 +115,7 @@ Culture/Posts:
 - For account registration, logic is included to ensure emails and usernames do not already exist in the database.
 - The Checkout is secured and payment can be successfully taken via Stipe.
 - Users cannot add reviews to products, add meetups or add comments to meetups without being logged in.
+- Defensive programming to prevent non-logged in users to visit urls they don't have access too
 
 
 ## Deployment
